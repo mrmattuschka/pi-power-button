@@ -1,7 +1,7 @@
 #! /bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          listen-for-shutdown.py
+# Provides:          pwr_vol_buttons.py
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -13,15 +13,15 @@
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
-    echo "Starting listen-for-shutdown.py"
-    /usr/local/bin/listen-for-shutdown.py &
+    echo "Starting pwr_vol_buttons.py"
+    /usr/local/bin/pwr_vol_buttons.py &
     ;;
   stop)
-    echo "Stopping listen-for-shutdown.py"
-    pkill -f /usr/local/bin/listen-for-shutdown.py
+    echo "Stopping pwr_vol_buttons.py"
+    pkill -f /usr/local/bin/pwr_vol_buttons.py
     ;;
   *)
-    echo "Usage: /etc/init.d/listen-for-shutdown.sh {start|stop}"
+    echo "Usage: /etc/init.d/pwr_vol_buttons.sh {start|stop}"
     exit 1
     ;;
 esac
