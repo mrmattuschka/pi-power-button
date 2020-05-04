@@ -7,10 +7,10 @@ from gpiozero import Button, LED
 ##### Button actions #####
 
 def vol_up():
-    subprocess.run("amixer set Master 5%+", shell=True, check=True)
+    subprocess.run("amixer set PCM 5%+", shell=True, check=True)
 
 def vol_dn():
-    subprocess.run("amixer set Master 5%-", shell=True, check=True)
+    subprocess.run("amixer set PCM 5%-", shell=True, check=True)
 
 def shutdown():
     subprocess.run("shutdown -h now", shell=True, check=True)
