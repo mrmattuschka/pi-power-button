@@ -17,7 +17,7 @@ def vol_dn():
 
 def shutdown():
     speaker.off()
-    subprocess.call(["shutdown", "-h" "now"], shell=False)
+    subprocess.call(["shutdown", "-h", "now"], shell=False)
     
 
 # Set up buttons
