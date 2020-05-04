@@ -3,11 +3,16 @@
 import time
 import subprocess
 import atexit
-from gpiozero import Button, LED, DigitalOutputDevice
+from gpiozero import Button, LED, DigitalOutputDevice, InputDevice
 
 # Button actions
 
 speaker = DigitalOutputDevice(22, active_high=True, initial_value=True)
+
+def shutdown_speaker():
+    speaker.off()
+    speaker.close()
+    speaker = InputDevice(22, pull_up=False)
 
 def vol_up():
     subprocess.run("amixer -q set PCM 5%+", shell=True, check=True)
@@ -16,7 +21,7 @@ def vol_dn():
     subprocess.run("amixer -q set PCM 5%-", shell=True, check=True)
 
 def shutdown():
-    speaker.off()
+    shutdown_speaker()
     subprocess.call(["shutdown", "-h", "now"], shell=False)
     
 
@@ -33,7 +38,7 @@ button_shutdown.when_held = shutdown
 
 # Make sure to turn off speakers when this script exits
 
-atexit.register(speaker.off)
+atexit.register(shutdown_speaker)
 
 # Most importantly: keep doing nothing
 
